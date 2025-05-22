@@ -3,8 +3,25 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+ "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    
+    "docker:build": "docker build -t tbi-app .",
+    "docker:run": "docker run -p 8080:8080 tbi-app",
+    "docker:test": "docker run tbi-app python /home/src/tests/run_tests.py",
+    
+    "up": "docker-compose up --build",
+    "down": "docker-compose down",
+    "dev": "docker-compose --profile dev up --build",
+    "logs": "docker-compose logs -f",
+    
+    "clean": "docker system prune -f",
+    
+    "assessment:build": "docker build -t tbi-submission .",
+    "assessment:run": "docker run -p 8080:8080 tbi-submission",
+    "assessment:test": "docker run tbi-submission python /home/src/tests/run_tests.py",
+    
+    "health": "curl -f http://localhost:8080/health || exit 1"
   },
   "keywords": [],
   "author": "",
